@@ -1,0 +1,38 @@
+{
+  "rewrites": [
+    { "source": "/login", "destination": "/" },
+    { "source": "/register", "destination": "/" },
+
+    { "source": "/admin", "destination": "/" },
+    { "source": "/admin/:path*", "destination": "/" },
+
+    { "source": "/mentor", "destination": "/" },
+    { "source": "/mentor/:path*", "destination": "/" },
+
+    { "source": "/dashboard", "destination": "/" },
+    { "source": "/cursos", "destination": "/" },
+    { "source": "/cursos/:id", "destination": "/" },
+    { "source": "/cursos/:id/aulas", "destination": "/" },
+    { "source": "/cursos/:id/todas-aulas", "destination": "/" },
+    { "source": "/cursos/:courseId/visualizar/aulas/:lessonId", "destination": "/" },
+    { "source": "/aula-ao-vivo", "destination": "/" },
+    { "source": "/progresso", "destination": "/" },
+    { "source": "/desafios", "destination": "/" },
+    { "source": "/desafios/:id", "destination": "/" },
+    { "source": "/mentoria", "destination": "/" },
+    { "source": "/mentoria/agendar/:id", "destination": "/" },
+    { "source": "/redacoes", "destination": "/" },
+    { "source": "/redacoes/nova", "destination": "/" },
+    { "source": "/redacoes/editor/:id", "destination": "/" },
+    { "source": "/redacoes/correcao/:id", "destination": "/" },
+    { "source": "/simulados", "destination": "/" },
+    { "source": "/simulados/novo", "destination": "/" },
+    { "source": "/simulados/prova/:id", "destination": "/" },
+    { "source": "/simulados/resultado/:id", "destination": "/" },
+    { "source": "/configuracoes", "destination": "/" },
+    { "source": "/planos/:id", "destination": "/" },
+    { "source": "/mensagens", "destination": "/" },
+
+    { "source": "/:path*", "destination": "/" }
+  ]
+}
