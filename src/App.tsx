@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { AdminSidebar } from "@/components/layout/AdminSidebar";
 import { MentorSidebar } from "@/components/layout/MentorSidebar";
@@ -70,13 +70,18 @@ function App() {
         {children}
       </main>
     ) : (
-      // Return the regular layout with sidebar
-      <div className="flex min-h-screen w-full">
+      // Return the regular layout with sidebar using SidebarInset
+      <>
         <StudentSidebar />
-        <main className="flex-1">
-          {children}
-        </main>
-      </div>
+        <SidebarInset>
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
+            <SidebarTrigger className="-ml-1" />
+          </header>
+          <div className="flex flex-1 flex-col gap-4 p-4">
+            {children}
+          </div>
+        </SidebarInset>
+      </>
     );
   };
 
@@ -144,12 +149,15 @@ function App() {
             element={
               <AuthWrapper requiredRole="ADMIN">
                 <SidebarProvider>
-                  <div className="flex min-h-screen w-full">
-                    <AdminSidebar />
-                    <main className="flex-1">
+                  <AdminSidebar />
+                  <SidebarInset>
+                    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
+                      <SidebarTrigger className="-ml-1" />
+                    </header>
+                    <div className="flex flex-1 flex-col gap-4 p-4">
                       <AdminRoutes />
-                    </main>
-                  </div>
+                    </div>
+                  </SidebarInset>
                 </SidebarProvider>
               </AuthWrapper>
             }
@@ -160,12 +168,15 @@ function App() {
             element={
               <AuthWrapper requiredRole="MENTOR">
                 <SidebarProvider>
-                  <div className="flex min-h-screen w-full">
-                    <MentorSidebar />
-                    <main className="flex-1">
+                  <MentorSidebar />
+                  <SidebarInset>
+                    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
+                      <SidebarTrigger className="-ml-1" />
+                    </header>
+                    <div className="flex flex-1 flex-col gap-4 p-4">
                       <MentorRoutes />
-                    </main>
-                  </div>
+                    </div>
+                  </SidebarInset>
                 </SidebarProvider>
               </AuthWrapper>
             }
