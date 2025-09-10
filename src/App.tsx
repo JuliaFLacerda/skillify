@@ -14,6 +14,26 @@ import { Toaster } from "./components/ui/toaster";
 import { useEffect, useState } from "react";
 import { StudentSidebar } from "./components/layout/StudentSidebar";
 
+// Bottom Mobile Menu Component
+const BottomMobileMenu = () => {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t md:hidden">
+      <div className="flex items-center justify-center h-16 px-4">
+        {/* Left section - could add other buttons */}
+        <div className="flex-1"></div>
+        
+        {/* Center - Sidebar Trigger */}
+        <div className="flex items-center justify-center">
+          <SidebarTrigger className="h-10 w-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg" />
+        </div>
+        
+        {/* Right section - could add other buttons */}
+        <div className="flex-1"></div>
+      </div>
+    </div>
+  );
+};
+
 function App() {
   const [authChecked, setAuthChecked] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -65,21 +85,21 @@ function App() {
     const hideSidebar = lessonPageRegex.test(location.pathname);
 
     return hideSidebar ? (
-      // Return just the main content without the sidebar
-      <main className="flex-1 w-full">
+      // Return just the main content without the sidebar, with bottom padding for mobile menu
+      <main className="flex-1 w-full pb-16 md:pb-0">
         {children}
+        <BottomMobileMenu />
       </main>
     ) : (
       // Return the regular layout with sidebar using SidebarInset
       <>
         <StudentSidebar />
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
-            <SidebarTrigger className="-ml-1" />
-          </header>
-          <div className="flex flex-1 flex-col gap-4 p-4">
+          {/* Main content with bottom padding for mobile menu */}
+          <div className="flex flex-1 flex-col gap-4 p-4 pb-20 md:pb-4">
             {children}
           </div>
+          <BottomMobileMenu />
         </SidebarInset>
       </>
     );
@@ -151,12 +171,11 @@ function App() {
                 <SidebarProvider>
                   <AdminSidebar />
                   <SidebarInset>
-                    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
-                      <SidebarTrigger className="-ml-1" />
-                    </header>
-                    <div className="flex flex-1 flex-col gap-4 p-4">
+                    {/* Main content with bottom padding for mobile menu */}
+                    <div className="flex flex-1 flex-col gap-4 p-4 pb-20 md:pb-4">
                       <AdminRoutes />
                     </div>
+                    <BottomMobileMenu />
                   </SidebarInset>
                 </SidebarProvider>
               </AuthWrapper>
@@ -170,12 +189,11 @@ function App() {
                 <SidebarProvider>
                   <MentorSidebar />
                   <SidebarInset>
-                    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
-                      <SidebarTrigger className="-ml-1" />
-                    </header>
-                    <div className="flex flex-1 flex-col gap-4 p-4">
+                    {/* Main content with bottom padding for mobile menu */}
+                    <div className="flex flex-1 flex-col gap-4 p-4 pb-20 md:pb-4">
                       <MentorRoutes />
                     </div>
+                    <BottomMobileMenu />
                   </SidebarInset>
                 </SidebarProvider>
               </AuthWrapper>
